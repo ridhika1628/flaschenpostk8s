@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: HelloApp
+  name: helloapp
 spec:
   schedule: "*/30 * * * *"
   jobTemplate:
@@ -9,10 +9,11 @@ spec:
       template:
         spec:
           containers:
-          - name: HelloApp
+          - name: helloapp
             image: busybox:1.28
-            imagePullPolicy: Always
+            imagePullPolicy: Always
             command:
             - /bin/sh
             - -c
             - date; echo Hello World!
+          restartPolicy: OnFailure
