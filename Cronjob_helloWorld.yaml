@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: HelloApp
+spec:
+  schedule: "*/30 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: HelloApp
+            image: busybox:1.28
+            imagePullPolicy: Always
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello World!
